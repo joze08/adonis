@@ -14,8 +14,7 @@ export default class MessagesController {
   }
 
   public async show({ params }: HttpContextContract) {
-    //const message = await Message.findOrFail(params.id);
-    const message = await Message.query().where("texto", "like", `%${params.id}%`)
+    const message = await Message.findOrFail(params.id);
     return message;
   }
 
