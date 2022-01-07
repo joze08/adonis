@@ -3,7 +3,7 @@ import Message from 'App/Models/Message'
 
 export default class MessagesController {
   public async index({ }: HttpContextContract) {
-    const message = await Message.query().preload('user');
+    const message = await Message.query().preload('user').orderBy("asc");
     return message;
   }
 
@@ -14,7 +14,7 @@ export default class MessagesController {
   }
 
   public async show({ params }: HttpContextContract) {
-    const message = await Message.findOrFail(params.id);
+    const message = await Message.query().where("texto", "like", `%${params.id}%`);
     return message;
   }
 
