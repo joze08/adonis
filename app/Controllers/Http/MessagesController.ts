@@ -3,7 +3,7 @@ import Message from 'App/Models/Message'
 
 export default class MessagesController {
   public async index({ }: HttpContextContract) {
-    const message = await Message.query().preload('user').orderBy("asc");
+    const message = await Message.query().preload('user');
     return message;
   }
 
